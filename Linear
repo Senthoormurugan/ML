@@ -1,0 +1,33 @@
+import pandas as pd 
+import numpy as np
+import matplotlib.pyplot as plt 
+dta = pd.read_csv("/content/Salary_Data.csv") 
+                                        
+data.head() 
+data.info() 
+data.isnull().sum()
+data.head() len(data)
+x = data['YearsExperience'].values
+x
+x = x.reshape(len(data),1) #used to give a new shape to an array without changing its data
+x.shape
+y = data['Salary'].values
+y.shape
+from sklearn.model_selection import train_test_split
+xtrain,xtest,ytrain,ytest = train_test_split(x,y,train_size=0.8,random_state=200)
+
+from sklearn.linear_model import LinearRegression
+model = LinearRegression()
+model.fit(xtrain,ytrain)
+ypred = model.predict(xtest)
+ypred
+plt.scatter(xtrain,ytrain,color="red",label="Actual Points")
+plt.scatter(xtrain,model.predict(xtrain),color="blue",label="Predicted Points")
+plt.plot(xtrain,model.predict(xtrain),color="orange",label="Line of Regression")
+plt.legend()
+plt.show()
+plt.scatter(xtest,ytest,color="red",label="Actual Points")
+plt.scatter(xtest,model.predict(xtest),color="blue",label="Predicted Points")
+plt.plot(xtest,model.predict(xtest),color="orange",label="Line of Regression")
+plt.legend()
+plt.show()
